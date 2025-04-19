@@ -25,7 +25,8 @@ def aeg_pca(X0, X1, trend):
 
     # Get ADF statistics
     if collinearity < 1.0 - __sqrteps:
-        adf_stat = adfuller(residual, regression="nc")[0]
+        # adf_stat = adfuller(residual, regression="nc")[0]
+        adf_stat = adfuller(residual, regression="n")[0]
     else:
         adf_stat = -np.inf
 
