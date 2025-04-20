@@ -19,10 +19,10 @@ class StationarityTester:
     >>> gauss = np.random.randn(100)  # stationary
     >>> stat = StationarityTester()
     >>> stat.pvalue(gauss)
-    1.1655044784188669e-17
+    np.float64(1.1655044784188669e-17)
     >>> brown = gauss.cumsum()
     >>> stat.pvalue(brown)
-    0.6020814791099098
+    np.float64(0.6020814791099098)
     """
 
     def __init__(self, method="ADF", regression="c"):

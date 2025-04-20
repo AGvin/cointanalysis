@@ -10,6 +10,8 @@ python = ">=3.12"
 statsmodels = "^0.14.4"
 numpy = ">=2.2.0"
 scikit-learn = ">=1.2"
+setuptools = "^78.1.1"
+yfinance = "^0.2.55"
 
 
 [tool.poetry.dev-dependencies]

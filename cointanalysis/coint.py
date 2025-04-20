@@ -80,12 +80,12 @@ class CointAnalysis(BaseEstimator, TransformerMixin):
 
     Finding cointegration equation:
     >>> coint = CointAnalysis().fit(X)
-    >>> coint.coef_
-    array([-1.9999203,  1.       ])
+    >>> coint.coef_.tolist()
+    [-1.999920295977108, 1.0]
     >>> coint.mean_
-    0.5267391195138771
+    np.float64(0.5267391195138771)
     >>> coint.std_
-    0.2918203104682326
+    np.float64(0.2918203104682326)
 
     Transform into stationary time-series:
     >>> Xs = coint.transform(X)

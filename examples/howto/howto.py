@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import pandas_datareader
+import yfinance as yf
 from pandas.plotting import register_matplotlib_converters
 
 from cointanalysis import CointAnalysis
@@ -10,17 +11,26 @@ register_matplotlib_converters()
 
 
 def fetch_etf(ticker):
-    return pandas_datareader.data.DataReader(
-        ticker, "yahoo", "2012-01-01", "2018-12-31"
-    )["Adj Close"]
+    # return pandas_datareader.data.DataReader(
+    #     ticker, "yahoo", "2012-01-01", "2018-12-31"
+    # )["Adj Close"]
+    df = yf.download(ticker, start="2012-01-01", end="2018-12-31", group_by="ticker", auto_adjust=False)
+
+    # Якщо є мультиіндекс
+    if isinstance(df.columns, pd.MultiIndex):
+        return df[ticker]["Adj Close"] if "Adj Close" in df[ticker] else df[ticker]["Close"]
+    
+    # Якщо звичайні колонки
+    return df["Adj Close"] if "Adj Close" in df.columns else df["Close"]
+
 
 
 def plot_prices(hyg, bkln):
     plt.figure(figsize=(16, 4))
 
     plt.title("HYG and BKLN")
-    hyg_norm = 100 * hyg / hyg[0]
-    bkln_norm = 100 * bkln / bkln[0]
+    hyg_norm = 100 * hyg / hyg.iloc[0]
+    bkln_norm = 100 * bkln / bkln.iloc[0]
     plt.plot(hyg_norm, label="HYG (2012-01-01 = 100)", linewidth=1)
     plt.plot(bkln_norm, label="BKLN (2012-01-01 = 100)", linewidth=1)
 
