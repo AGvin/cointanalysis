@@ -8,7 +8,7 @@ license = "BSD-3-Clause"
 [tool.poetry.dependencies]
 python = ">=3.12"
 statsmodels = "^0.14.4"
-numpy = ">=2.2.0"
+numpy = ">=1.26.5"
 scikit-learn = ">=1.2"
 setuptools = "^78.1.1"
 yfinance = "^0.2.55"
